@@ -8,18 +8,16 @@
 // 9 wxyz
 //
 
-#include<iostream>
-#include<string>
-#include<vector>
+#include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
 
-class Solution {
+class Solution
+{
 private:
     vector<char> Num2Letts[10] = {
-        {},{},{'a','b','c'},{'d','e','f'},
-        {'g','h','i'},{'j','k','l'},{'m','n','o'},
-        {'p','q','r','s'},{'t','u','v'},{'w','x','y','z'}
-    };
+        {}, {}, {'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}, {'j', 'k', 'l'}, {'m', 'n', 'o'}, {'p', 'q', 'r', 's'}, {'t', 'u', 'v'}, {'w', 'x', 'y', 'z'}};
     /*vector<string> Num2Letts[10] = {
         {},{},{"a","b","c"},{"d","e","f"},
         {"g","h","i"},{"j","k","l"},{"m","n","o"},
@@ -27,19 +25,20 @@ private:
     };*/
 
 public:
-    vector<string> letterCombinations(string digits) {
+    vector<string> letterCombinations(string digits)
+    {
         vector<string> ans;
         int len = digits.size();
-        int* numLen = new int[len]; //Êý×Ö¶ÔÓ¦×ÖÄ¸µÄ¸öÊý
-        int cnt = 1;    //×Ü¹² cnt ÖÖ×éºÏ
+        int *numLen = new int[len]; // ï¿½ï¿½ï¿½Ö¶ï¿½Ó¦ï¿½ï¿½Ä¸ï¿½Ä¸ï¿½ï¿½ï¿½
+        int cnt = 1;                // ï¿½Ü¹ï¿½ cnt ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < len; i++)
         {
-            numLen[i] = (digits[i] == 7 or digits[i] == 9) ? 4 : 3;
+            numLen[i] = (digits[i] == 7 || digits[i] == 9) ? 4 : 3;
             cnt *= numLen[i];
         }
-        //cnt = fore * numLen[i] * rear;
-        //±éÀú£ºnumLen(3 or 4)¸ö²»Í¬×ÖÄ¸ * Ã¿¸ö×ÖÄ¸ÖØ¸´rear´Î * fore¸öÑ­»·
-        //µÚÒ»¸öÊý×Ö
+        // cnt = fore * numLen[i] * rear;
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½numLen(3 or 4)ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ä¸ * Ã¿ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ø¸ï¿½rearï¿½ï¿½ * foreï¿½ï¿½Ñ­ï¿½ï¿½
+        // ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         int cur = digits[0] - '0';
         int fore = numLen[0];
         int rear = cnt / (fore * numLen[0]);
@@ -50,7 +49,7 @@ public:
                 temp.push_back(Num2Letts[cur][j]);
                 ans.push_back(temp);
             }
-        //µÚ 2 to len ¸öÊý×Ö
+        // ï¿½ï¿½ 2 to len ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 1; i < len; i++)
         {
             cur = digits[i] - '0';
@@ -75,12 +74,8 @@ int main()
         cout << a << ' ';
 }
 
-
-
-
-
-// 1 abc£¬2 de£¬3 fg                                    Ã¿¸öÖØ¸´ rear ´Î, Ñ­»· fore ´Î
-// 1-->a,  a,  a,  a,  b,  b,  b,  b,  c,  c,  c,  c    Ã¿¸öÖØ¸´ 2*2 ´Î
-// 2-->ad, ad, ae, ae, bd, bd, be, be, cd, cd, ce, ce   Ã¿¸öÖØ¸´ 2 ´Î, Ñ­»· 3 ´Î
-// 3-->adf,adg,aef,aeg,bdf,bdg,bef,beg,cdf,cdg,cef,ceg  Ã¿¸öÖØ¸´ 1 ´Î£¬Ñ­»· 3*2 ´Î
-// 
+// 1 abcï¿½ï¿½2 deï¿½ï¿½3 fg                                    Ã¿ï¿½ï¿½ï¿½Ø¸ï¿½ rear ï¿½ï¿½, Ñ­ï¿½ï¿½ fore ï¿½ï¿½
+// 1-->a,  a,  a,  a,  b,  b,  b,  b,  c,  c,  c,  c    Ã¿ï¿½ï¿½ï¿½Ø¸ï¿½ 2*2 ï¿½ï¿½
+// 2-->ad, ad, ae, ae, bd, bd, be, be, cd, cd, ce, ce   Ã¿ï¿½ï¿½ï¿½Ø¸ï¿½ 2 ï¿½ï¿½, Ñ­ï¿½ï¿½ 3 ï¿½ï¿½
+// 3-->adf,adg,aef,aeg,bdf,bdg,bef,beg,cdf,cdg,cef,ceg  Ã¿ï¿½ï¿½ï¿½Ø¸ï¿½ 1 ï¿½Î£ï¿½Ñ­ï¿½ï¿½ 3*2 ï¿½ï¿½
+//
